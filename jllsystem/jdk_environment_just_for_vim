@@ -1,0 +1,7 @@
+******************************************************************************
+  Copyright(c) 2016-2100.  jielong_lin.  All rights reserved.
+------------------------------------------------------------------------------
+JAVA_HOME  = ~/.jllsystem/jdk1.8.0_101
+JRE_HOME   = ~/.jllsystem/jdk1.8.0_101/jre
+CLASSPATH  = .:~/.jllsystem/jdk1.8.0_101/lib:~/.jllsystem/jdk1.8.0_101/jre/lib
+PATH       #= ~/.jllsystem/jdk1.8.0_101/bin

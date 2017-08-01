@@ -1,0 +1,1 @@
+/root/.vicc/vicc_for_linux64/vim

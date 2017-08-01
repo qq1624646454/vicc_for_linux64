@@ -1,7 +1,15 @@
 ====================================================================================================
 ====================================================================================================
-
-
+vicc is the program developped IDE integrated with the follows: 
+(1).Vi IMproved 7.4 - VIM 7.4 modified by jielong_lin 
+    --> the vim can be installed in privated user home without privileged root, and co-work 
+        with Exuberant-ctags, cscope, taglist, etc. 
+(2).Exuberant Ctags 5.8 
+(3).cscope 15.8b modified by jielong_lin 
+    --> Improved PATHLEN from 250 to 1024 byte 
+(4).taglist
+(5).Support for take tags and CSCOPE_DB variables to vim and ensure vim can use ctags, 
+    cscope and so on.
 
     Especially Note: 
         so far vicc only support for linux 64bit intel platform.   by jielong.lin
@@ -13,8 +21,50 @@
 
 
 
+Revision 2017.08.01.00
+----------------------------------------------------------------------------------------------------
+[1].Solving vicc issue about not load cscope database file for editing or opening File
+[2].Re-architect for source code builder and re-build the release github website as follows:
+        https://github.com/qq1624646454/vicc_for_linux64
 
-
+~/.vicc
+└── vicc_for_linux64
+    ├── jllsystem    <-----  ~/.jllsystem
+    │   ├── bin
+    │   ├── jdk1.8.0_101
+    │   ├── jdk_environment_just_for_vim
+    │   ├── settings
+    │   └── share
+    ├── README
+    ├── vim          <-----  ~/.vim
+    │   ├── after
+    │   ├── autoload
+    │   ├── bundle
+    │   ├── colors
+    │   ├── cpp_tags
+    │   ├── doc
+    │   ├── java_tags
+    │   ├── plugin
+    │   ├── readme.jll
+    │   └── sys_tags
+    ├── vimrc        <-----  ~/.vim
+    └── vimrcs       <-----  ~/.vimrcs
+        ├── colorscheme.vimrc
+        ├── cpp_tags.vimrc
+        ├── cscope.vimrc
+        ├── ctags.vimrc
+        ├── file.vimrc
+        ├── general_settings.vimrc
+        ├── javacomplete2.vimrc
+        ├── java_tags.vimrc
+        ├── keyboard_maps.vimrc
+        ├── omnicppcomplete.vimrc
+        ├── pathogen.vimrc
+        ├── readme.jll
+        ├── sys_tags.vimrc
+        ├── tagbar.vimrc
+        ├── taglist.vimrc
+        └── vim-airline.vimrc
 
 
 

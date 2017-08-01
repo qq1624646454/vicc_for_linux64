@@ -3410,19 +3410,31 @@ function Fn_vimide_pm_UiMain_ForUse()
             tree ${LvVipumfuMyConf}
             echo ""
             source ${LvVipumfuMyConf}/envsetup.sh
-            if [ x"$2" = x"1" ]; then
+            case x"$2" in
+            x"1")
                 vim -t $1
-            fi
+                ;;
+            x"2")
+                vim $1
+                ;;
+            *)
+                ;;
+            esac
             source ${LvVipumfuMyConf}/envclean.sh
         else
-            if [ x"$2" = x"1" ]; then
+            case x"$2" in
+            x"1")
                 Lfn_Sys_DbgEcho "Sorry, not open symbol \"$1\" due to lack of vicc project"
-            fi
+                ;;
+            x"2")
+                vim $1
+                ;;
+            *)
+                ;;
+            esac
+
             unset LvVipumfuHitPrjs
             unset LvVipumfuHitItems
-        fi
-        if [ x"$2" = x"2" ]; then
-            vim $1
         fi
     fi
 }

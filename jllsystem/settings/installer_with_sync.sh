@@ -57,22 +57,22 @@ function FN_setup_vicc_executable_environment()
         FN_exit 0
     fi
 
-    if [ -e "${HOME}/.jllsystem" ]; then
+    if [ x"$(ls -l ${HOME}/.jllsystem 2>/dev/null)" != x ]; then
         rm -rf ${HOME}/.jllsystem
     fi
     ln -sv ${_JLLCFG_rootPath}/jllsystem  ${HOME}/.jllsystem
 
-    if [ -e "${HOME}/.vimrc" ]; then
+    if [ x"$(ls -l ${HOME}/.vimrc 2>/dev/null)" != x ]; then
         rm -rf ${HOME}/.vimrc
     fi
     ln -sv ${_JLLCFG_rootPath}/vimrc ${HOME}/.vimrc
 
-    if [ -e "${HOME}/.vimrcs" ]; then
+    if [ x"$(ls -l ${HOME}/.vimrcs 2>/dev/null)" != x ]; then
         rm -rf ${HOME}/.vimrcs
     fi
     ln -sv ${_JLLCFG_rootPath}/vimrcs ${HOME}/.vimrcs
 
-    if [ -e "${HOME}/.vim" ]; then
+    if [ x"$(ls -l ${HOME}/.vim 2>/dev/null)" != x ]; then
         rm -rf ${HOME}/.vim
     fi
     ln -sv ${_JLLCFG_rootPath}/vim ${HOME}/.vim
@@ -80,19 +80,19 @@ function FN_setup_vicc_executable_environment()
 
 function FN_remove_vicc_executable_environment()
 {
-    if [ -e "${HOME}/.jllsystem" ]; then
+    if [ x"$(ls -l ${HOME}/.jllsystem 2>/dev/null)" != x ]; then
         rm -rf ${HOME}/.jllsystem
     fi
 
-    if [ -e "${HOME}/.vimrc" ]; then
+    if [ x"$(ls -l ${HOME}/.vimrc 2>/dev/null)" != x ]; then
         rm -rf ${HOME}/.vimrc
     fi
 
-    if [ -e "${HOME}/.vimrcs" ]; then
+    if [ x"$(ls -l ${HOME}/.vimrcs 2>/dev/null)" != x ]; then
         rm -rf ${HOME}/.vimrcs
     fi
 
-    if [ -e "${HOME}/.vim" ]; then
+    if [ x"$(ls -l ${HOME}/.vim 2>/dev/null)" != x ]; then
         rm -rf ${HOME}/.vim
     fi
 }
@@ -268,8 +268,8 @@ function FN_unregiste_from_bashrc()
 
 function FN_setup_auto_synchronize_in_crontab()
 {
-    if [ -e "${HOME}/.jllsystem/settings/_______vicc_auto_sync_by_GIT__in_crontab.sh" ]; then
-       
+    if [ x"$(ls -l ${HOME}/.jllsystem/settings/_______vicc_auto_sync_by_GIT__in_crontab.sh \
+             2>/dev/null)" != x ]; then
         crontab -l  > tsk.crontab  2>/dev/null
         __chk_if_exist=$(cat tsk.crontab \
             | grep -E "[$]{HOME}/.jllsystem/settings/_______vicc_auto_sync_by_GIT__in_crontab.sh")
@@ -286,6 +286,9 @@ function FN_setup_auto_synchronize_in_crontab()
         crontab -l
         echo
         [ -e "$(pwd)/tsk.crontab" ] && rm -rf tsk.crontab
+    else
+        echo -e "JLL| Failure due to lack of" \
+        "${Fred}\${HOME}/.jllsystem/settings/_______vicc_auto_sync_by_GIT__in_crontab.sh${AC}"
     fi
 }
 
@@ -304,7 +307,9 @@ function FN_remove_auto_synchronize_in_crontab()
     fi
     [ -e "$(pwd)/tsk.crontab" ] && rm -rf tsk.crontab
 
-    if [ -e "${HOME}/.jllsystem/settings/_______vicc_auto_sync_by_GIT__in_crontab.sh" ]; then
+    if [ x"$(ls -l \
+         ${HOME}/.jllsystem/settings/_______vicc_auto_sync_by_GIT__in_crontab.sh 2>/dev/null)" \
+         != x ]; then
         rm -rvf ${HOME}/.jllsystem/settings/_______vicc_auto_sync_by_GIT__in_crontab.sh
     fi
 }
@@ -328,22 +333,17 @@ EOF
 
     FN_setup_vicc_executable_environment
 
-    [ ! -e "${HOME}/.jllsystem/settings" ] && \
+    [ x"$(ls -l ${HOME}/.jllsystem/settings 2>/dev/null)" = x ] && \
         mkdir -pv ${HOME}/.jllsystem/settings
 
-    if [ -e "${HOME}/.jllsystem/settings/source_vicc_in_bashrc.sh" ]; then 
+    if [ x"$(ls -l ${HOME}/.jllsystem/settings/source_vicc_in_bashrc.sh 2>/dev/null)" != x ]; then 
         FN_registe_into_bashrc
     else
         echo -e \
         "JLL: Failure due to lack of \"${HOME}/.jllsystem/settings/source_vicc_in_bashrc.sh\""
     fi
 
-    if [ -e "${HOME}/.jllsystem/settings/_______vicc_auto_sync_by_GIT__in_crontab.sh" ]; then
-        FN_setup_auto_synchronize_in_crontab
-    else
-        echo -e "JLL: Failure due to lack of" \
-        "\"${HOME}/.jllsystem/settings/_______vicc_auto_sync_by_GIT__in_crontab.sh\""
-    fi
+    FN_setup_auto_synchronize_in_crontab
 
     [ x"${_cprefix}" != x ] && unset _cprefix
     [ x"${_cfg}" != x ] && unset _cfg

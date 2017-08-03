@@ -5,7 +5,7 @@
 #   Author:       jielong.lin
 #   Email:        493164984@qq.com
 #   DateTime:     2017-05-11 14:34:27
-#   ModifiedTime: 2017-07-31 14:15:54
+#   ModifiedTime: 2017-08-03 08:56:03
 
 _sshconf_name="qq1624646454@csdn_github"
 _git_remote_url="https://github.com/qq1624646454/vicc/commits/master"
@@ -191,6 +191,7 @@ function _FN_getSameLevelPath()
 
 __DT=$(/bin/date +%Y-%m-%d_%H:%M:%S)
 __LOG=${HOME}/cron.${JLLSELF}@${__DT}.log
+[ x"$(/bin/ls -l ${HOME}/cron*.log 2>/dev/null)" != x ] && rm -rf ${HOME}/cron*.log
 >${__LOG}
 JLLPATH=${HOME}/.vicc/vicc_for_linux64   # it will be set some value by another tool
 if [ x"${JLLPATH}" = x -o ! -e "${JLLPATH}" ]; then

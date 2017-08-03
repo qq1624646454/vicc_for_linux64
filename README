@@ -18,6 +18,9 @@ vicc is the program developped IDE integrated with the follows:
 
 
 
+Revision 2017.08.03.00
+----------------------------------------------------------------------------------------------------
+[1].Let cron.@xxx.log is hold only one under ${HOME} 
 
 
 

@@ -2664,6 +2664,13 @@ if [ ! -e "${GvHome}" ]; then
     mkdir -pv ${GvHome}
     chmod 0777 -R ${GvHome}
 fi
+if [ -e "/media/root/work/jllproject" ]; then
+    GvHome="/media/root/work/jllproject"
+else
+    echo "not exist /media/root/work/jllproject"
+    exit 0
+fi
+
 GvHome="${GvHome}/.vimide"
 if [ ! -e "${GvHome}" ]; then
     mkdir -pv ${GvHome}
@@ -3407,7 +3414,7 @@ function Fn_vimide_pm_UiMain_ForUse()
                 exit 0
             fi
             echo ""
-            tree ${LvVipumfuMyConf}
+            tree ${LvVipumfuMyConf} -lh
             echo ""
             source ${LvVipumfuMyConf}/envsetup.sh
             case x"$2" in
@@ -3559,13 +3566,15 @@ function Fn_vimide_pm_UiMain_For_EditNew()
 ##
 function Fn_vimide_pm_UiMain_ForDel()
 {
-    LvVipumfdPath="$(cd ~/.vimide;pwd)"
+#    LvVipumfdPath="$(cd ~/.vimide;pwd)"
+    LvVipumfdPath="${GvHome}"
     if [ ! -e "${LvVipumfdPath}" ]; then
         Lfn_Sys_DbgEcho "Sorry, Exit because dont exist \"${LvVipumfdPath}\""
         exit 0
     fi
 
-    Fn_PathView_UiMain  "~/.vimide" "pm.delete.config" "dummy"
+#    Fn_PathView_UiMain  "~/.vimide" "pm.delete.config" "dummy"
+    Fn_PathView_UiMain  "${LvVipumfdPath}" "pm.delete.config" "dummy"
     if [ ! -e "$(pwd)/pm.delete.config" ]; then
         Lfn_Sys_DbgEcho "Sorry, Exit because delete operation occurs unknown error."
         unset LvVipumfdPath

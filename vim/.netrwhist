@@ -1,0 +1,3 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/media/root/work/jllproject/oneiotworld_without_smb358/apps_proc/kernel/msm-3.18/drivers/spmi'

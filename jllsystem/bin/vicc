@@ -2666,9 +2666,6 @@ if [ ! -e "${GvHome}" ]; then
 fi
 if [ -e "/media/root/work/jllproject" ]; then
     GvHome="/media/root/work/jllproject"
-else
-    echo "not exist /media/root/work/jllproject"
-    exit 0
 fi
 
 GvHome="${GvHome}/.vimide"
